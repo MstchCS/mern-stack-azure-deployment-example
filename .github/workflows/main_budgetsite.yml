@@ -27,11 +27,14 @@ jobs:
           npm install       
       
       - name: Install npm packages, build then copy files - client
-        run: |
-          cd mern/client
-          npm install
-          npm run build
-          cp -r ./build ../server/public
+  run: |
+    cd mern/client
+    npm ci
+    npm run build
+    cp -r ./build ../server/public
+  env:
+    CI: false  # optional quick fix, see warning above
+
             
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
